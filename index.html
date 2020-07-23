@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+
+    <title>Weather Forecast</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Weather Forecast</h1>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card main-temp">
+            <div class="card-header">
+              Search for a City:
+              <input
+                type="text"
+                id="city-search"
+                placeholder="City or City , Country"/>
+                <br>
+              <button type="button" class="btn btn-info" id="city-btn">
+                Search
+              </button>
+            </div>
+            <ul class="list-group list-group-flush" id="city-list"></ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card main-temp">
+            <div class="card-header" id="weather-header">
+                <h2 id="city-name">City:</h2>
+               <h3 id="country-name">Country:</h3>
+            </div>
+            <div class="card-body">
+              <blockquote
+                class="blockquote mb-0"
+                id="weather-score"></blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="row">
+        <h3 class="five-day">5 Day Forecast:</h3>
+      </div>
+      <div class="card-deck row">
+        <div class="card five-day">
+          <div class="card-body">
+            <h5 class="card-title" id="date-1"></h5>
+            <div class="card-text" id = "weather-card-1">
+            
+            </div>
+          </div>
+        </div>
+        <div class="card five-day">
+          <div class="card-body">
+            <h5 class="card-title" id="date-2"></h5>
+            <div class="card-text" id = "weather-card-2">
+              
+            </div>
+          </div>
+        </div>
+        <div class="card five-day">
+          <div class="card-body">
+            <h5 class="card-title" id="date-3"></h5>
+            <div class="card-text"id = "weather-card-3">
+              
+            </div>
+          </div>
+        </div>
+        <div class="card five-day">
+          <div class="card-body">
+            <h5 class="card-title" id="date-4"></h5>
+            <div class="card-text" id = "weather-card-4">
+              
+            </div>
+          </div>
+        </div>
+        <div class="card five-day">
+          <div class="card-body">
+            <h5 class="card-title" id="date-5"></h5>
+            <div class="card-text" id = "weather-card-5">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <h3>By Danny Steiger</h3>
+      </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+header, footer {
+  margin: 1rem 0 1rem 0;
+  padding: 1rem 0 1rem 0;
+  background: gray;
+  color: ghostwhite;
+  width: 100%;
+  text-align: center;
+}
+
+#city-search {
+  margin: 1rem 0 1rem 0;
+}
+
+#city-btn {
+  margin: 1rem 0 1rem 0;
+}
+
+.main-temp {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+#weather-header{
+    background: rgba(28, 160, 160, 0.699)
+}
+
+#imgicon{
+   float: right;
+}
+
+.color-box1{
+  background-color: green;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: ghostwhite;
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.color-box2{
+  background-color: yellow;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: ghostwhite;
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.color-box3{
+  background-color: orange;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: ghostwhite;
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.color-box4{
+  background-color: red;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: ghostwhite;
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.color-box5{
+  background-color: darkviolet;
+  float: right;
+  padding: 5px;
+  text-align: center;
+  color: ghostwhite;
+  border-radius: 25px;
+  height: 40px;
+  width: 40px;
+}
+
+.five-day {
+  margin: 1rem 1rem 1rem 1rem;
+}
