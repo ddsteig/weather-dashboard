@@ -1,5 +1,6 @@
 var key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
-let city = "Naples";
+let city = " ";
+let savedCity = [];
 
 function getWeather(city) {
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
@@ -24,11 +25,11 @@ function getWeather(city) {
       
       if(uvIndex <= 2){
         uvBox.attr("class", "color-box1")
-      }else if (uvIndex >= 3 && uvIndex <= 5){
+      }else if (uvIndex >= 3 && uvIndex < 6){
         uvBox.attr("class", "color-box2")
-      }else if (uvIndex >= 6 && uvIndex <= 7){
+      }else if (uvIndex >= 6 && uvIndex < 8){
         uvBox.attr("class", "color-box3")
-      }else if (uvIndex >= 8 && uvIndex <= 10){
+      }else if (uvIndex >= 8 && uvIndex < 11){
         uvBox.attr("class", "color-box4")
       }else if (uvIndex >= 11){
         uvBox.attr("class", "color-box5")
@@ -122,21 +123,94 @@ function getWeather(city) {
     weatherDiv.append(p3);
 
     $("#weather-score").append(weatherDiv);
-    // cityList();
+    
+
+
+  
+
   });
 
 }
 
-// function cityList(city){
+function cityList(city){
+  if(savedCity.length == 6){
+    console.log(savedCity)
+     savedCity.splice(0, 1);
+ }
 
-//     for(i=0; i < 5; i++){
-//         let cityList = $("<li>")
-//         cityList.text(city)
-//         $("#city-list").append(cityList)
-//     }
-// }
+  $("#city-list").empty();
+  let cityArray = {
+    city: city
+  }
+  
+  savedCity.push(cityArray)
+  
+  console.log(savedCity)
+  
+  for(i=0; i < savedCity.length; i++){
+    
+    let cityList = $("<button>")
+    cityList.attr("class", "list-group-item");
+    cityList.attr("id", "clist-", i);
+    cityList.attr("type", "click");
+    cityList.attr("data-li" , i);
+    cityList.text(savedCity[i].city);
+
+
+
+    $("#city-list").prepend(cityList)
+
+
+}
+localStorage.setItem("savedCity", JSON.stringify(savedCity));
+}
+
+function getCity(){
+  if (localStorage.getItem("savedCity") !== null) {
+  let loadCity = JSON.parse(localStorage.getItem("savedCity"));
+  for (i = 0; i < loadCity.length; i++) {
+
+    let cityList = $("<button>")
+    cityList.attr("class", "list-group-item button");
+    cityList.attr("id", "clist-" + i);
+    cityList.attr("type", "click");
+    cityList.attr("data-li" , i);
+    cityList.text(loadCity[i].city);
+
+
+
+    $("#city-list").prepend(cityList)
+
+    let cityArray = {
+      city: loadCity[i].city      
+    }
+    savedCity.push(cityArray)
+    console.log(savedCity)
+}
+  let theCity = savedCity[savedCity.length - 1]
+  let loadedCity = theCity.city
+  getWeather(loadedCity)
+}
+
+}
+
+getCity();
 
 $("#city-btn").on("click", function () {
+  if(city == " "){
+    return;
+  } else {
   var city = $("#city-search").val().trim();
+  }
   getWeather(city);
+  cityList(city);
 });
+
+$(".list-group-item").on("click", function(){
+  console.log("line 208 ----", this )
+  let citydata = $(this).attr("data-li");
+  let cityClick = $(this).text();
+  console.log(citydata)
+  console.log(cityClick)
+   getWeather(cityClick)
+})
