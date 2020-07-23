@@ -47,10 +47,13 @@ function getWeather(city) {
       method: "GET",
     }).then(function (dailyresponse) {
       console.log(dailyresponse)
+      
       for (i=1; i < 6; i++){
         let date = dailyresponse.daily[i].dt
         let dailyDate = new Date (date * 1000).toLocaleDateString("en-US")
         $("#date-" + i).text(dailyDate)
+
+        $("#weather-card-" + i).empty();
 
         let weatherImg = dailyresponse.daily[i].weather[0].icon
         let dailyIcon = "http://openweathermap.org/img/wn/" + weatherImg + "@2x.png"
