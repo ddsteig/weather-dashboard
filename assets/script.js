@@ -17,7 +17,7 @@ function getWeather(city) {
     console.log(response.coord.lat);
     var lon = response.coord.lon;
     var uvUrl =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=" +
       key +
       "&lat=" +
       lat +
