@@ -76,7 +76,7 @@ function getWeather(city) {
 
         let weatherImg = dailyresponse.daily[i].weather[0].icon;
         let dailyIcon =
-          "http://openweathermap.org/img/wn/" + weatherImg + "@2x.png";
+          "https://openweathermap.org/img/wn/" + weatherImg + "@2x.png";
         let img = $("<img>").attr("src", dailyIcon);
 
         let dailyHigh = dailyresponse.daily[i].temp.max;
