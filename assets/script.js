@@ -37,6 +37,7 @@ function getWeather(city) {
 
       uvBox.text("UV")
       var p4 = $("<p>").text("UV Index : " + uvIndex);
+      p4.attr("class", "weather-body")
       p4.append(uvBox)
       weatherDiv.append(p4);
     });
@@ -62,14 +63,17 @@ function getWeather(city) {
         
         let dailyHigh = dailyresponse.daily[i].temp.max
         let p1 = $("<p>")
+        
         p1.text("High of: " + dailyHigh)
 
         let dailyLow = dailyresponse.daily[i].temp.min
         let p2 = $("<p>")
+        
         p2.text("Low of: " + dailyLow)
 
         let dailyHumid= dailyresponse.daily[i].humidity
         let p3 = $("<p>")
+        
         p3.text("Humidity: " + dailyHumid)  
 
         $("#weather-card-"+i).append(img, p1, p2, p3)
@@ -101,7 +105,7 @@ function getWeather(city) {
     
 
     var countryName = response.sys.country;
-
+    
     $("#country-name").append("Country: " + countryName);
 
     var weatherDiv = $("<div>");
@@ -109,19 +113,18 @@ function getWeather(city) {
     var temp = response.main.temp;
 
     var p1 = $("<p>").text("Temperature : " + temp);
-
+    p1.attr("class", "weather-body")
     var humid = response.main.humidity;
 
     var p2 = $("<p>").text("Humidity: " + humid);
-
+    p2.attr("class", "weather-body")
     var wind = response.wind.speed;
 
     var p3 = $("<p>").text("Windspeed : " + wind + " knots");
+    p3.attr("class", "weather-body")
 
-    weatherDiv.append(p1);
-    weatherDiv.append(p2);
-    weatherDiv.append(p3);
-
+    weatherDiv.append(p1, p2, p3);
+  
     $("#weather-score").append(weatherDiv);
     
 
@@ -137,7 +140,7 @@ function cityList(city){
     console.log(savedCity)
      savedCity.splice(0, 1);
  }
-
+  city = city.charAt(0).toUpperCase() + city.slice(1);
   $("#city-list").empty();
   let cityArray = {
     city: city
@@ -212,5 +215,5 @@ $(".list-group-item").on("click", function(){
   let cityClick = $(this).text();
   console.log(citydata)
   console.log(cityClick)
-   getWeather(cityClick)
+  getWeather(cityClick)
 })

@@ -7,15 +7,22 @@ header, footer {
   text-align: center;
 }
 
+#city{
+  background: lightgray;
+}
+
 #city-search {
+  
   margin: 1rem 0 1rem 0;
 }
 
 #city-btn {
   margin: 1rem 0 1rem 0;
+  background: rgba(28, 160, 160, 0.699);
 }
 
 .main-temp {
+
   margin-top: 1rem;
   font-weight: bold;
 }
@@ -24,8 +31,17 @@ header, footer {
     background: rgba(28, 160, 160, 0.699)
 }
 
+.weather-body{
+  margin: 2.5rem 0 2.5rem 0;
+}
+
 #imgicon{
    float: right;
+}
+
+#city-list{
+  float: left;
+  font-weight: bold;
 }
 
 .color-box1{
@@ -83,6 +99,16 @@ header, footer {
   width: 40px;
 }
 
+#five-day{
+  margin: 1rem 1rem 1rem 1rem;
+  border-radius: 15px;
+  background: lightgray;
+  padding: 1rem;
+  
+}
+
 .five-day {
   margin: 1rem 1rem 1rem 1rem;
+  background: rgba(28, 160, 160, 0.699);
+  font-weight: bold;
 }
