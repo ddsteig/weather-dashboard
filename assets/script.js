@@ -1,5 +1,5 @@
 var key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
-let city = " ";
+let city = "Estero";
 let savedCity = [];
 
 function getWeather(city) {
