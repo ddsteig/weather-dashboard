@@ -5,6 +5,7 @@ header,
 footer {
   margin: 1rem 0 1rem 0;
   padding: 1rem 0 1rem 0;
+  border-radius: 10px;
   background: gray;
   color: ghostwhite;
   width: 100%;
@@ -112,7 +113,7 @@ footer {
 
 #five-day {
   margin: 1rem 0 1rem 0;
-  border-radius: 15px;
+  border-radius: 5px;
   background: lightgray;
   padding: 1rem;
 }

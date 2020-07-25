@@ -24,7 +24,6 @@ function getWeather(city) {
     method: "GET",
   }).then(function (response) {
     var lat = response.coord.lat;
-    console.log(response.coord.lat);
     var lon = response.coord.lon;
     var uvUrl =
       "https://api.openweathermap.org/data/2.5/uvi?appid=" +
@@ -33,14 +32,13 @@ function getWeather(city) {
       lat +
       "&lon=" +
       lon;
-
+console.log(response)
     // Call for the UV index using latitude and longitude from current weather return.
 
     $.ajax({
       url: uvUrl,
       method: "GET",
     }).then(function (uvresponse) {
-      console.log(uvresponse);
 
       var uvIndex = uvresponse.value;
       var uvBox = $("<div>");
@@ -62,6 +60,7 @@ function getWeather(city) {
       uvBox.text("UV");
       var p4 = $("<p>").text("UV Index : " + uvIndex);
       p4.attr("class", "weather-body");
+
       p4.append(uvBox);
       weatherDiv.append(p4);
     });
@@ -81,22 +80,20 @@ function getWeather(city) {
       url: dailyUrl,
       method: "GET",
     }).then(function (dailyresponse) {
-      console.log(dailyresponse);
-
+      
       // For Loop to display weather info the 5 cards on the page.
 
       for (i = 1; i < 6; i++) {
-        let date = dailyresponse.daily[i].dt;
-        let dailyDate = new Date(date * 1000).toLocaleDateString("en-US");
-        $("#date-" + i).text(dailyDate);
-
+        
         $("#weather-card-" + i).empty();
 
+        let dailyDate = new Date(dailyresponse.daily[i].dt * 1000).toLocaleDateString("en-US");
+        $("#date-" + i).text(dailyDate);
         let weatherImg = dailyresponse.daily[i].weather[0].icon;
         let dailyIcon =
           "https://openweathermap.org/img/wn/" + weatherImg + "@2x.png";
         let img = $("<img>").attr("src", dailyIcon);
-
+        image.attr("alt", "Weather Icon")
         let dailyHigh = dailyresponse.daily[i].temp.max;
         let p1 = $("<p>");
         p1.text("High of: " + dailyHigh);
@@ -126,6 +123,7 @@ function getWeather(city) {
     var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     var image = $("<img>").attr("src", weatherIcon);
     image.attr("id", "imgicon");
+    image.attr("alt", "Weather Icon")
     $("#city-name").append("City: " + cityName);
     $("#city-name").append(image);
     var countryName = response.sys.country;
@@ -140,7 +138,7 @@ function getWeather(city) {
     var p2 = $("<p>").text("Humidity: " + humid);
     p2.attr("class", "weather-body");
     var wind = response.wind.speed;
-    var p3 = $("<p>").text("Windspeed : " + wind + " knots");
+    var p3 = $("<p>").text("Windspeed : " + wind + " mph");
     p3.attr("class", "weather-body");
 
     weatherDiv.append(p1, p2, p3);
@@ -175,6 +173,14 @@ function cityList(city) {
     $("#city-list").prepend(cityList);
   }
   localStorage.setItem("savedCity", JSON.stringify(savedCity));
+
+  $(".list-group-item").on("click", function () {
+
+    let cityClick = $(this).text();
+    console.log(cityClick);
+    getWeather(cityClick);
+  });
+
 }
 
 // Function that loads local storage onto the page through a refresh.
@@ -222,10 +228,8 @@ $("#city-btn").on("click", function () {
 // Event listener to click on a listed city and load the weather data.
 
 $(".list-group-item").on("click", function () {
-  console.log("line 208 ----", this);
-  let citydata = $(this).attr("data-li");
+
   let cityClick = $(this).text();
-  console.log(citydata);
   console.log(cityClick);
   getWeather(cityClick);
 });
