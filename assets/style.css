@@ -1,3 +1,6 @@
+
+/* Header and footer display */
+
 header,
 footer {
   margin: 1rem 0 1rem 0;
@@ -7,6 +10,8 @@ footer {
   width: 100%;
   text-align: center;
 }
+
+/* City Search box display */
 
 #city {
   background: lightgray;
@@ -20,6 +25,8 @@ footer {
   margin: 1rem 0 1rem 0;
   background: rgba(28, 160, 160, 0.699);
 }
+
+/* Current weather display */
 
 .main-temp {
   margin-top: 1rem;
@@ -38,10 +45,13 @@ footer {
   float: right;
 }
 
+/* City List diplay */
+
 #city-list {
-  float: left;
   font-weight: bold;
 }
+
+/* Created 5 colored circles to use in condtional in javascript for uv index. */
 
 .color-box1 {
   background-color: green;
@@ -97,6 +107,8 @@ footer {
   height: 40px;
   width: 40px;
 }
+
+/* Five Day Forcast display */
 
 #five-day {
   margin: 1rem 0 1rem 0;

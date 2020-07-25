@@ -13,11 +13,16 @@
 
     <title>Weather Forecast</title>
   </head>
+
+  <!-- Loads default city of Estero. -->
+  
   <body onload="javascript:getWeather(city)">
     <div class="container">
       <header>
         <h1>Weather Forecast</h1>
       </header>
+
+      <!-- City List display area. -->
 
       <div class="row">
         <div class="col-lg-4">
@@ -38,6 +43,8 @@
           </div>
         </div>
 
+        <!-- Current Weather display area. -->
+
         <div class="col-lg-8">
           <div class="card main-temp">
             <div class="card-header" id="weather-header">
@@ -55,6 +62,8 @@
       </div>
 
       <br />
+      <!-- Five Day Forcast display area. -->
+
       <div class="row" id="five-day">
         <h3>5 Day Forecast:</h3>
       </div>

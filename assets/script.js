@@ -1,15 +1,25 @@
+// Global Variables
+
 var key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
 let city = "Estero";
 let savedCity = [];
 
+// Function that runs three different api calls for:
+    // Current weather, 
+    // UV index, 
+    // Five day forcast.
+
 function getWeather(city) {
+  
+  // Call for the current weather.
+
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&units=imperial&appid=" +
     key;
 
-  $.ajax({
+    $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
@@ -24,6 +34,8 @@ function getWeather(city) {
       "&lon=" +
       lon;
 
+    // Call for the UV index using latitude and longitude from current weather return.
+
     $.ajax({
       url: uvUrl,
       method: "GET",
@@ -32,6 +44,8 @@ function getWeather(city) {
 
       var uvIndex = uvresponse.value;
       var uvBox = $("<div>");
+
+      // Conditional that updates a colored circle based on the uv index.
 
       if (uvIndex <= 2) {
         uvBox.attr("class", "color-box1");
@@ -52,6 +66,8 @@ function getWeather(city) {
       weatherDiv.append(p4);
     });
 
+    // Call for the five day forecast.
+
     var dailyUrl =
       "https://api.openweathermap.org/data/2.5/onecall?" +
       "lat=" +
@@ -66,6 +82,8 @@ function getWeather(city) {
       method: "GET",
     }).then(function (dailyresponse) {
       console.log(dailyresponse);
+
+      // For Loop to display weather info the 5 cards on the page.
 
       for (i = 1; i < 6; i++) {
         let date = dailyresponse.daily[i].dt;
@@ -94,13 +112,16 @@ function getWeather(city) {
       }
     });
 
+    // Current weather forecast displayed on main card.
+    // Use of .empty to prevent continuously adding information on each new city searched.
+
     $("#weather-score").empty();
     $("#city-name").empty();
     $("#country-name").empty();
 
     var cityName = response.name;
     var icon = response.weather[0].icon;
-    var weatherIcon = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     var image = $("<img>").attr("src", weatherIcon);
     image.attr("id", "imgicon");
     $("#city-name").append("City: " + cityName);
@@ -125,6 +146,8 @@ function getWeather(city) {
   });
 }
 
+// Function that creates a list of clickable cities and also stores them into local storage.
+
 function cityList(city) {
   if (savedCity.length == 6) {
     console.log(savedCity);
@@ -138,8 +161,6 @@ function cityList(city) {
 
   savedCity.push(cityArray);
 
-  console.log(savedCity);
-
   for (i = 0; i < savedCity.length; i++) {
     let cityList = $("<button>");
     cityList.attr("class", "list-group-item");
@@ -152,6 +173,9 @@ function cityList(city) {
   }
   localStorage.setItem("savedCity", JSON.stringify(savedCity));
 }
+
+// Function that loads local storage onto the page through a refresh.
+  //Runs the get weather function to display last searched city.
 
 function getCity() {
   if (localStorage.getItem("savedCity") !== null) {
@@ -170,8 +194,8 @@ function getCity() {
         city: loadCity[i].city,
       };
       savedCity.push(cityArray);
-      console.log(savedCity);
     }
+
     let theCity = savedCity[savedCity.length - 1];
     let loadedCity = theCity.city;
     getWeather(loadedCity);
@@ -179,6 +203,8 @@ function getCity() {
 }
 
 getCity();
+
+// Event listener to get the city name data.
 
 $("#city-btn").on("click", function () {
   if (city == " ") {
@@ -189,6 +215,8 @@ $("#city-btn").on("click", function () {
   getWeather(city);
   cityList(city);
 });
+
+// Event listener to click on a listed city and load the weather data.
 
 $(".list-group-item").on("click", function () {
   console.log("line 208 ----", this);
