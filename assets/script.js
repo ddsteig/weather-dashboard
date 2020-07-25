@@ -118,8 +118,10 @@ function getWeather(city) {
     $("#weather-score").empty();
     $("#city-name").empty();
     $("#country-name").empty();
+    $("#daily-date").empty();
 
     var cityName = response.name;
+    var cityDate = new Date(response.dt * 1000).toLocaleDateString("en-US");
     var icon = response.weather[0].icon;
     var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     var image = $("<img>").attr("src", weatherIcon);
@@ -128,7 +130,8 @@ function getWeather(city) {
     $("#city-name").append(image);
     var countryName = response.sys.country;
     $("#country-name").append("Country: " + countryName);
-
+    $("#daily-date").append(cityDate)
+    
     var weatherDiv = $("<div>");
     var temp = response.main.temp;
     var p1 = $("<p>").text("Temperature : " + temp);
