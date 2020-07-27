@@ -93,7 +93,7 @@ console.log(response)
         let dailyIcon =
           "https://openweathermap.org/img/wn/" + weatherImg + "@2x.png";
         let img = $("<img>").attr("src", dailyIcon);
-        image.attr("alt", "Weather Icon")
+        img.attr("alt", "Weather Icon")
         let dailyHigh = dailyresponse.daily[i].temp.max;
         let p1 = $("<p>");
         p1.text("High of: " + dailyHigh);
@@ -151,9 +151,9 @@ console.log(response)
 
 function cityList(city) {
   if (savedCity.length == 6) {
-    console.log(savedCity);
-    savedCity.splice(0, 1);
+      savedCity.splice(0, 1);
   }
+
   city = city.charAt(0).toUpperCase() + city.slice(1);
   $("#city-list").empty();
   let cityArray = {
@@ -164,8 +164,8 @@ function cityList(city) {
 
   for (i = 0; i < savedCity.length; i++) {
     let cityList = $("<button>");
-    cityList.attr("class", "list-group-item");
-    cityList.attr("id", "clist-", i);
+    cityList.attr("class", "list-group-item button");
+    cityList.attr("id", "clist-" + i);
     cityList.attr("type", "click");
     cityList.attr("data-li", i);
     cityList.text(savedCity[i].city);
@@ -175,9 +175,7 @@ function cityList(city) {
   localStorage.setItem("savedCity", JSON.stringify(savedCity));
 
   $(".list-group-item").on("click", function () {
-
     let cityClick = $(this).text();
-    console.log(cityClick);
     getWeather(cityClick);
   });
 
@@ -230,6 +228,5 @@ $("#city-btn").on("click", function () {
 $(".list-group-item").on("click", function () {
 
   let cityClick = $(this).text();
-  console.log(cityClick);
   getWeather(cityClick);
 });
