@@ -183,6 +183,7 @@ function cityList(city) {
 
 // Function that loads local storage onto the page through a refresh.
   //Runs the get weather function to display last searched city.
+  // Also loads a default city if no local storage is available.
 
 function getCity() {
   if (localStorage.getItem("savedCity") !== null) {
