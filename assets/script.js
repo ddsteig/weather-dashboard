@@ -1,7 +1,7 @@
 // Global Variables
 
 var key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
-let city = "Estero";
+let city = " ";
 let savedCity = [];
 
 // Function that runs three different api calls for:
@@ -32,7 +32,7 @@ function getWeather(city) {
       lat +
       "&lon=" +
       lon;
-console.log(response)
+
     // Call for the UV index using latitude and longitude from current weather return.
 
     $.ajax({
@@ -206,6 +206,9 @@ function getCity() {
     let theCity = savedCity[savedCity.length - 1];
     let loadedCity = theCity.city;
     getWeather(loadedCity);
+  } else {
+    var city = "estero"
+    getWeather(city);
   }
 }
 
