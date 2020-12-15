@@ -4,6 +4,8 @@
 
 ![Current Weather Forcast](./assets/img/weather.png)
 
+### [Head to the Weather Dashboard here!](https://ddsteig.github.io/weather-dashboard/)
+
 <hr>
 
 ![Five Day Forecast](./assets/img/fiveday.png)
