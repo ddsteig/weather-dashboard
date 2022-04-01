@@ -1,7 +1,7 @@
 // Global Variables
 
-var key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
-let city = " ";
+const key = process.env.API_KEY;
+
 let savedCity = [];
 
 // Function that runs three different api calls for:
@@ -106,6 +106,51 @@ function getWeather(city) {
 
         $("#weather-card-" + i).append(img, p1, p2, p3);
         
+      }
+      for (i = 1; i < 6; i++) {
+
+        Highcharts.chart('container', {
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: '5 Day Forecast'
+          },
+          subtitle: {
+              text: 'Weather Api'
+          },
+          xAxis: {
+              categories: [
+                $("#date-" + i).text(dailyDate),
+              ],
+              crosshair: true
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Temperature'
+              }
+          },
+          tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+          },
+          plotOptions: {
+              column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+              }
+          },
+          series: [{
+              name: cityName,
+              data: [dailyHigh, dailyLow],
+      
+          },],
+        });
       }
     });
 
