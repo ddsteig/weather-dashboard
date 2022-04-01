@@ -1,16 +1,15 @@
 // Global Variables
 
-const key = '7aca6d5582fe8abbe1cd2a78e0c485b9';
+const key = "7aca6d5582fe8abbe1cd2a78e0c485b9";
 
 let savedCity = [];
 
 // Function that runs three different api calls for:
-    // Current weather, 
-    // UV index, 
-    // Five day forcast.
+// Current weather,
+// UV index,
+// Five day forcast.
 
 function getWeather(city) {
-  
   // Call for the current weather.
 
   var queryURL =
@@ -19,7 +18,7 @@ function getWeather(city) {
     "&units=imperial&appid=" +
     key;
 
-    $.ajax({
+  $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
@@ -39,7 +38,6 @@ function getWeather(city) {
       url: uvUrl,
       method: "GET",
     }).then(function (uvresponse) {
-
       var uvIndex = uvresponse.value;
       var uvBox = $("<div>");
 
@@ -80,20 +78,20 @@ function getWeather(city) {
       url: dailyUrl,
       method: "GET",
     }).then(function (dailyresponse) {
-      
       // For Loop to display weather info the 5 cards on the page.
 
       for (i = 1; i < 6; i++) {
-        
         $("#weather-card-" + i).empty();
 
-        let dailyDate = new Date(dailyresponse.daily[i].dt * 1000).toLocaleDateString("en-US");
+        let dailyDate = new Date(
+          dailyresponse.daily[i].dt * 1000
+        ).toLocaleDateString("en-US");
         $("#date-" + i).text(dailyDate);
         let weatherImg = dailyresponse.daily[i].weather[0].icon;
         let dailyIcon =
           "https://openweathermap.org/img/wn/" + weatherImg + "@2x.png";
         let img = $("<img>").attr("src", dailyIcon);
-        img.attr("alt", "Weather Icon")
+        img.attr("alt", "Weather Icon");
         let dailyHigh = dailyresponse.daily[i].temp.max;
         let p1 = $("<p>");
         p1.text("High of: " + dailyHigh);
@@ -105,52 +103,6 @@ function getWeather(city) {
         p3.text("Humidity: " + dailyHumid);
 
         $("#weather-card-" + i).append(img, p1, p2, p3);
-        
-      }
-      for (i = 1; i < 6; i++) {
-
-        Highcharts.chart('container', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: '5 Day Forecast'
-          },
-          subtitle: {
-              text: 'Weather Api'
-          },
-          xAxis: {
-              categories: [
-                $("#date-" + i).text(dailyDate),
-              ],
-              crosshair: true
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'Temperature'
-              }
-          },
-          tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-          },
-          plotOptions: {
-              column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-              }
-          },
-          series: [{
-              name: cityName,
-              data: [dailyHigh, dailyLow],
-      
-          },],
-        });
       }
     });
 
@@ -168,13 +120,13 @@ function getWeather(city) {
     var weatherIcon = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
     var image = $("<img>").attr("src", weatherIcon);
     image.attr("id", "imgicon");
-    image.attr("alt", "Weather Icon")
+    image.attr("alt", "Weather Icon");
     $("#city-name").append("City: " + cityName);
     $("#city-name").append(image);
     var countryName = response.sys.country;
     $("#country-name").append("Country: " + countryName);
-    $("#daily-date").append(cityDate)
-    
+    $("#daily-date").append(cityDate);
+
     var weatherDiv = $("<div>");
     var temp = response.main.temp;
     var p1 = $("<p>").text("Temperature : " + temp);
@@ -188,7 +140,6 @@ function getWeather(city) {
 
     weatherDiv.append(p1, p2, p3);
     $("#weather-score").append(weatherDiv);
-
   });
 }
 
@@ -196,7 +147,7 @@ function getWeather(city) {
 
 function cityList(city) {
   if (savedCity.length == 6) {
-      savedCity.splice(0, 1);
+    savedCity.splice(0, 1);
   }
 
   city = city.charAt(0).toUpperCase() + city.slice(1);
@@ -223,12 +174,11 @@ function cityList(city) {
     let cityClick = $(this).text();
     getWeather(cityClick);
   });
-
 }
 
 // Function that loads local storage onto the page through a refresh.
-  //Runs the get weather function to display last searched city.
-  // Also loads a default city if no local storage is available.
+//Runs the get weather function to display last searched city.
+// Also loads a default city if no local storage is available.
 
 function getCity() {
   if (localStorage.getItem("savedCity") !== null) {
@@ -253,7 +203,7 @@ function getCity() {
     let loadedCity = theCity.city;
     getWeather(loadedCity);
   } else {
-    var city = "estero"
+    var city = "estero";
     getWeather(city);
   }
 }
@@ -275,7 +225,6 @@ $("#city-btn").on("click", function () {
 // Event listener to click on a listed city and load the weather data.
 
 $(".list-group-item").on("click", function () {
-
   let cityClick = $(this).text();
   getWeather(cityClick);
 });
