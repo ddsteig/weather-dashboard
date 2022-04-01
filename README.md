@@ -2,6 +2,8 @@
 
 <hr>
 
+### [Head to the Weather Dashboard here!](https://ddsteig.github.io/weather-dashboard/)
+
 ![Current Weather Forcast](./assets/img/weather.png)
 
 <hr>
