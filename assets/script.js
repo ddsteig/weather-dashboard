@@ -1,6 +1,6 @@
 // Global Variables
 
-const key = process.env.API_KEY;
+const key = '7aca6d5582fe8abbe1cd2a78e0c485b9';
 
 let savedCity = [];
 
